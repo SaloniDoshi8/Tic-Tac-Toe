@@ -60,6 +60,7 @@ export default function Tictactoe() {
         checkForWinner(squares)
         setCells(squares)
     }
+
     const Cell = ({num}) => {
         return <td onClick={() => handleClick(num)}>{cells[num]}</td>
     }
@@ -70,38 +71,44 @@ export default function Tictactoe() {
     }
 
   return (
-    <div className='home'>
-        <div className="heading">
-            <h2>Tic-Tac-toe</h2>
+    <section>
+        <div className='home'>
+            <div className="heading">
+                <h1>Tic-Tac-Toe</h1>
+            </div>
+            <div className="main-table">
+                <table>
+                    Turn: {turn}
+                    <tbody className='text-center'>
+                        <tr>
+                            <Cell num={0}/>
+                            <Cell num={1}/>
+                            <Cell num={2}/>
+                        </tr>
+                        <tr>
+                            <Cell num={3}/>
+                            <Cell num={4}/>
+                            <Cell num={5}/>
+                        </tr>
+                        <tr>
+                            <Cell num={6}/>
+                            <Cell num={7}/>
+                            <Cell num={8}/>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {winner && (
+                <>
+                    <p>
+                        <span className='winner-word winner-word-1'>{winner}</span> 
+                        <span className='winner-word winner-word-2'> is</span> 
+                        <span className='winner-word winner-word-3'> Winner...!</span>
+                    </p>
+                    <button type='button' className='btn btn-outline-light' onClick={() => handleRestart()}>Play Again</button>
+                </>
+            )}
         </div>
-        <div className="main-table">
-            <table>
-                Turn: {turn}
-                <tbody>
-                    <tr>
-                        <Cell num={0}/>
-                        <Cell num={1}/>
-                        <Cell num={2}/>
-                    </tr>
-                    <tr>
-                        <Cell num={3}/>
-                        <Cell num={4}/>
-                        <Cell num={5}/>
-                    </tr>
-                    <tr>
-                        <Cell num={6}/>
-                        <Cell num={7}/>
-                        <Cell num={8}/>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        {winner && (
-            <>
-                <p>{winner} is Winner...!</p>
-                <button onClick={() => handleRestart()}>Play Again</button>
-            </>
-        )}
-    </div>
+    </section>
   )
 }
